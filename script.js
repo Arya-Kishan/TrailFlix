@@ -13,7 +13,7 @@ let pausebtn = document.querySelector(".pausebtn")
 const first_fetch = async () => {
     let category = await fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=7fad363f58889077cd601fe2d0ed4fb7")
     category = await category.json()
-    category = (category.genres).slice(0, 2)
+    category = (category.genres)
     category.forEach(element => {
         category_movies(element.name, element.id)
     });
@@ -31,23 +31,21 @@ const mov_name = async (movie_name) => {
     movie_trailer.style.display = "block"
     console.log(movie_name)
 
-    // let response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${movie_name}&key=AIzaSyAOOFrJ8QNGrnbJPyRytE6qlOqUXaz1XrM`);
-    // response = await response.json()
-    // console.log(response)
+    let response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${movie_name}&key=AIzaSyAOOFrJ8QNGrnbJPyRytE6qlOqUXaz1XrM`);
+    response = await response.json()
+    console.log(response)
 
-    // let videoID = response.items[0].id.videoId
-    // console.log("ID : " + videoID)
-    // movie_trailer.innerHTML = `<iframe width="100%" height="80%"
-    //                      src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1">
-    //                 </iframe> <button onclick="hide_trailer()" class="close_btn">CLOSE</button>`
+    let videoID = response.items[0].id.videoId
+    console.log("ID : " + videoID)
+    movie_trailer.innerHTML = `<div class="trailer11"><iframe width="100%" height="80%"
+                         src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1">
+                    </iframe> <button onclick="hide_trailer()" class="close_btn">CLOSE</button></div>`
 
 
 
-    movie_trailer.innerHTML = `
-    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/rp1aU3SileM?autoplay=1&control=1"></iframe>
-    <button onclick="hide_trailer()" class="close_btn">CLOSE</button>`
-
-    // main_body.classList.add("blur")
+    // movie_trailer.innerHTML = `<div class="trailer11">
+    // <iframe width="100%" height="100%" src="https://www.youtube.com/embed/rp1aU3SileM?autoplay=1&control=1"></iframe>
+    // <button onclick="hide_trailer()" class="close_btn">CLOSE</button> </div>`
 
 
 }
@@ -57,13 +55,12 @@ const category_movies = async (name, id) => {
     let movies = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=7fad363f58889077cd601fe2d0ed4fb7&with_genres=${id}`)
     movies = await movies.json()
     let arr1 = movies.results
-    console.log(arr1)
 
     let path = arr1.map(element => {
         return (`<div class="movie_box"><img onclick="mov_name(this.alt)" src=https://image.tmdb.org/t/p/w500${element.poster_path} alt="${element.original_title}" srcset=""></div>`)
     }).join(" ");
 
-    main_category.innerHTML += ` <h2 class="category_heading">${name}</h2>
+    main_category.innerHTML += ` <div class="category_headingdiv"><h2 class="category_heading">${name}</h2><span>More</span></div>
     <div class="category">
         ${path}
     </div>`
@@ -76,11 +73,9 @@ const category_movies = async (name, id) => {
 // --------------------------------------HEADER SECTION ----------------------------------
 
 let header_trailer_name = "";
+let image_url = "";
 
 const hero_section = async () => {
-
-    pausebtn.style.display = "none"
-    playbtn.style.display = "block"
 
     let hero = await fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=7fad363f58889077cd601fe2d0ed4fb7")
     hero = await hero.json()
@@ -91,31 +86,35 @@ const hero_section = async () => {
     movie_name.innerHTML = hero[num].original_title
     header_trailer_name = hero[num].original_title
     header_box2.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${hero[num].backdrop_path})`
+    image_url = `url(https://image.tmdb.org/t/p/w500${hero[num].backdrop_path})`;
     header_box2.innerHTML = ``
 
     movie_description.innerHTML = (hero[num].overview)
 
 }
 
+const pause_func = ()=>{
+    pausebtn.style.display = "none"
+    playbtn.style.display = "inline-block"
+    header_box2.innerHTML = ``
+    header_box2.style.backgroundImage = image_url;
+}
+
 const header_trailer = async () => {
-    console.log("hii")
-    console.log(header_trailer_name)
     pausebtn.style.display = "block"
     playbtn.style.display = "none"
 
-    // let response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${header_trailer_name}&key=AIzaSyAOOFrJ8QNGrnbJPyRytE6qlOqUXaz1XrM`);
-    // response = await response.json()
-    // console.log(response)
+    let response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${header_trailer_name}&key=AIzaSyAOOFrJ8QNGrnbJPyRytE6qlOqUXaz1XrM`);
+    response = await response.json()
 
-    // let videoID = response.items[0].id.videoId
-    // console.log("ID : " + videoID)
-    // header_box2.innerHTML = `<iframe class="header_video_trailer" width="100%" height="80%"
-    //                      src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1">
-    //                 </iframe> <button onclick="hide_trailer()" class="close_btn">CLOSE</button>`
+    let videoID = response.items[0].id.videoId
+    
+    header_box2.innerHTML = `<iframe class="header_video_trailer" width="100%" height="80%"
+                         src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1">
+                    </iframe>`
 
-    header_box2.innerHTML = `
-    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/rp1aU3SileM?autoplay=1&control=1"></iframe>
-    <button onclick="hide_trailer()" class="close_btn">CLOSE</button>`
+    // header_box2.innerHTML = `
+    // <iframe width="100%" height="100%" src="https://www.youtube.com/embed/rp1aU3SileM?autoplay=1&control=1"></iframe>`
 
 }
 
@@ -128,22 +127,3 @@ window.addEventListener("load", () => {
     first_fetch();
     hero_section()
 })
-
-
-
-
-
-
-
-
-
-
-
-
-    // let response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${movie_name}&key=AIzaSyAOOFrJ8QNGrnbJPyRytE6qlOqUXaz1XrM`);
-    // response = await response.json()
-
-    // let videoID = response.items[0].id.videoId
-    // movie_trailer.innerHTML = `<iframe width="100%" height="80%"
-    //                      src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1">
-    //                 </iframe> <button onclick="hide_trailer()" class="close_btn">CLOSE</button>`

@@ -88,6 +88,9 @@ nav{
     align-items: center;
     gap: .4vw;
 }
+.header1_textbox > span{
+    color: rebeccapurple;
+}
 .header--box2{
     box-shadow: 0 0 5px 3px white;
     border-radius: 20px;
@@ -108,15 +111,34 @@ nav{
     margin-top: 2vw;
 }
 .header--box1 img{
-    height: 1vw;
+    height: 2vw;
+}
+.trail_logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 .btn_bg{
     display: flex;
     flex-direction: row;
 }
+.playbtn div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.pausebtn div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
 .btn{
     gap: .2vw;
-    cursor: pointer;
 }
 .btn_bg img{
     height: 1.2vw;
@@ -127,7 +149,7 @@ nav{
     background-color:transparent;
 }
 .category::-webkit-scrollbar-thumb{
-    background: linear-gradient(to left,rgb(69, 0, 0),rgb(0, 0, 0));
+    background: linear-gradient(to left,rgb(141, 0, 0),rgb(0, 0, 0));
     border-radius: 20px;
 }
 
@@ -139,7 +161,7 @@ nav{
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 2vw;
+    gap: 1vw;
     padding: 1vw 2vw;
     overflow-x: scroll;
     overflow-y:auto;
@@ -152,8 +174,13 @@ nav{
     display: flex;
     flex-direction: column;
 }
+.category_headingdiv{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
 .main_category h2{
-    color: rgb(255, 255, 255);
     padding: .5vw 2vw;
 }
 .category img{
@@ -173,19 +200,20 @@ nav{
     gap: 1vw;
 }
 
-/* ---------TRAILER---------- */
-.movie_trailer{
+.trailer11{
+    background-color: black;
+    border-radius: 15px;
     position: fixed;
-    bottom: 8vw;
-    right: 0;
-    height: 30vh;
-    width: 24vw;
-}
-.close_btn{
-    position: fixed;
-    bottom: 1vw;
-    right: 4vw;
-    transform: translate(-85%,-50%);
+    bottom: 4vw;
+    right: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vw;
+    height: 22vw;
+    width: 25vw;
+    padding: 1vw;
 }
 
 iframe{
@@ -279,11 +307,10 @@ footer{
 
 
 
-
 /* RESPONSIVE--------------------------------------- */
 @media screen and (max-width : 900px) {
     body{
-        background-color: green;
+        background-color: rgb(0, 0, 0);
     }
     /* header----- */
     .header{
@@ -309,36 +336,38 @@ footer{
     }
 
     /* CATEGORY--------------- */
+    .category::-webkit-scrollbar{
+        display: none;
+    }
     .category{
         justify-content: center;
-        flex-wrap: wrap;
     }
-    .category_heading{
-        text-align: center;
+    .category:hover{
+        background: none;
+    }
+    .category_headingdiv{
+        font-size: 2.5vw;
+    }
+    .category img:hover{
+        transform: none;
+        cursor: pointer;
     }
     .category img{
         width: 15vw;
         height: 24vw;
-    }
-    .movie_trailer{
-        position: fixed;
-        bottom: 10vw;
-        right: 0;
-        height: 22vh;
-        width: 30vw;
-        margin-right: 5vw;
-    }
-    .close_btn{
-        position: fixed;
-        bottom: 1vw;
-        right: 9vw;
-        /* transform: translate(-50%,-50%); */
     }
     iframe{
         background: transparent;
         border: none;
         border-radius: 20px;
         box-shadow: 0 0 10px 10px black;
+    }
+    .trailer11{
+        bottom: 4vw;
+        right: 1vh;
+        height: 25vh;
+        width: 25vh;
+        padding: 1vh;
     }
 }
 
@@ -347,7 +376,7 @@ footer{
 
 @media screen and (max-width : 550px) {
     body{
-        background-color: aqua;
+        background-color: rgb(0, 0, 0);
     }
     .header--box2{
         height: 60vw;
@@ -363,24 +392,18 @@ footer{
         width: 20vw;
         height: 30vw;
     }
-    .movie_trailer{
-        position: fixed;
-        bottom: 10vw;
-        right: 0;
-        height: 22vh;
-        width: 30vw;
-        margin-right: 5vw;
-    }
-    .close_btn{
-        position: fixed;
-        bottom: .5vw;
-        right: 4vw;
-        /* transform: translate(-50%,-50%); */
-    }
     iframe{
         background: transparent;
         border: none;
         border-radius: 20px;
         box-shadow: 0 0 10px 10px black;
+    }
+
+    .trailer11{
+        bottom: 4vw;
+        right: 1vh;
+        height: 25vh;
+        width: 25vh;
+        padding: 1vh;
     }
 }
