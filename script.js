@@ -22,8 +22,6 @@ const first_fetch = async () => {
 const hide_trailer = () => {
     movie_trailer.innerHTML = ""
     movie_trailer.style.display = "none"
-    // main_body.classList.remove("blur")
-    // document.body.style.overflow = "visible"
 }
 
 // RESPONSE ON CLICK ON IMAGE --------------------------------------------------
@@ -41,13 +39,9 @@ const mov_name = async (movie_name) => {
                          src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1">
                     </iframe> <button onclick="hide_trailer()" class="close_btn">CLOSE</button></div>`
 
-
-
     // movie_trailer.innerHTML = `<div class="trailer11">
     // <iframe width="100%" height="100%" src="https://www.youtube.com/embed/rp1aU3SileM?autoplay=1&control=1"></iframe>
     // <button onclick="hide_trailer()" class="close_btn">CLOSE</button> </div>`
-
-
 }
 
 // FETCHING MOVIES IMAGES AND ADDING TO WEBPAGE------------------------------------------
@@ -86,11 +80,11 @@ const hero_section = async () => {
     movie_name.innerHTML = hero[num].original_title
     header_trailer_name = hero[num].original_title
     header_box2.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${hero[num].backdrop_path})`
-    image_url = `url(https://image.tmdb.org/t/p/w500${hero[num].backdrop_path})`;
     header_box2.innerHTML = ``
-
+    
     movie_description.innerHTML = (hero[num].overview)
-
+    
+    image_url = `url(https://image.tmdb.org/t/p/w500${hero[num].backdrop_path})`;
 }
 
 const pause_func = ()=>{
