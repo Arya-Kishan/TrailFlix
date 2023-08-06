@@ -140,10 +140,12 @@ const header_trailer = async () => {
 }
 
 const info_close = (this_obj) => {
+    main_body.style.pointerEvents = "all"
     main_body.style.filter = "blur(0)"
     this_obj.parentElement.parentElement.parentElement.style.display = "none"
 }
 info_btn.addEventListener("click", () => {
+    main_body.style.pointerEvents = "none"
     main_body.style.filter = "blur(20px)"
     movie_info.style.display = "block"
     movie_info.innerHTML = `<div class="info"><div class="info_heading">${title}</div>
@@ -151,6 +153,7 @@ info_btn.addEventListener("click", () => {
     <div>Description : \n ${overview}</div>
     <div class="info_child2"><span>IMDB : ${imdb}</span><span>Released Date : ${released_date}</span></div><div><button onclick="info_close(this)">CLOSE</button></div></div>`
 })
+
 
 window.addEventListener("load", () => {
     movie_trailer.style.display = "none"
