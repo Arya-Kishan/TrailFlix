@@ -14,8 +14,8 @@ let movie_info = document.querySelector(".movie_info")
 let gif = document.querySelector(".gif")
 let links = document.querySelectorAll(".links")
 let gif_span = document.querySelector(".gif_span")
-links.forEach((e)=>{
-    e.addEventListener("click",()=>{
+links.forEach((e) => {
+    e.addEventListener("click", () => {
         let a = e.innerText
         error_pop.style.display = "block"
         setTimeout(() => {
@@ -41,7 +41,7 @@ const hide_trailer = () => {
     main_body.style.filter = "blur(0)"
 }
 
-const enlarge = (ab)=>{
+const enlarge = (ab) => {
     let div_trailer = ab.parentElement.parentElement
     div_trailer.className = "trailer_enlarge"
     main_body.style.filter = "blur(10px)"
@@ -59,12 +59,15 @@ const mov_name = async (movie_name) => {
 
     let videoID = response.items[0].id.videoId
     console.log("ID : " + videoID)
-    movie_trailer.innerHTML = `<div class="trailer11"><iframe width="100%" height="80%"
+    movie_trailer.innerHTML = `<div class="trailer11">
+                   <iframe width="100%" height="80%"
                          src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1">
-                    </iframe> <div class="movie_trailer_btn">
-                    <button onclick="enlarge(this)" class="close_btn">ENLARGE</button>
-                    <button onclick="hide_trailer()" class="close_btn">CLOSE</button>
-                 </div>  <button onclick="hide_trailer()" class="close_btn">CLOSE</button></div>`
+                    </iframe> 
+                    <div class="movie_trailer_btn">
+                      <button onclick="enlarge(this)" class="close_btn">ENLARGE</button>
+                      <button onclick="hide_trailer()" class="close_btn">CLOSE</button>
+                    </div>
+                              </div>`
 }
 
 // FETCHING MOVIES IMAGES AND ADDING TO WEBPAGE------------------------------------------
@@ -114,13 +117,13 @@ const hero_section = async () => {
     header_trailer_name = hero[num].original_title
     header_box2.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${hero[num].backdrop_path})`
     header_box2.innerHTML = ``
-    
+
     movie_description.innerHTML = (hero[num].overview)
-    
+
     image_url = `url(https://image.tmdb.org/t/p/w500${hero[num].backdrop_path})`;
 }
 
-const pause_func = ()=>{
+const pause_func = () => {
     pausebtn.style.display = "none"
     playbtn.style.display = "inline-block"
     header_box2.innerHTML = ``
@@ -136,11 +139,11 @@ const header_trailer = async () => {
     header_box2.innerHTML = `<iframe class="header_video_trailer" width="100%" height="80%"src="https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1"></iframe>`
 }
 
-const info_close = (this_obj)=>{
+const info_close = (this_obj) => {
     main_body.style.filter = "blur(0)"
     this_obj.parentElement.parentElement.parentElement.style.display = "none"
 }
-info_btn.addEventListener("click",()=>{
+info_btn.addEventListener("click", () => {
     main_body.style.filter = "blur(20px)"
     movie_info.style.display = "block"
     movie_info.innerHTML = `<div class="info"><div class="info_heading">${title}</div>
